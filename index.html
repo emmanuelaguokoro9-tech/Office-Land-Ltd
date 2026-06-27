@@ -1047,12 +1047,20 @@
       position: relative;
       height: 180px;
       overflow: hidden;
+      background: #f0f0f0;
+      /* Placeholder background */;
     }
     .product-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s;
+      opacity: 0;
+      /* Start hidden */;
+    }
+    .product-image img.loaded {
+      opacity: 1;
+      transition: opacity 0.4s ease;
     }
     .product-card:hover .product-image img {
       transform: scale(1.06);
@@ -2023,7 +2031,7 @@
     </div>
   </section>
 
-  <!-- TOP SELLING PRODUCTS -->
+  <!-- TOP SELLING PRODUCTS - OPTIMIZED FOR PERFORMANCE -->
   <section class="top-selling animate-on-scroll">
     <div class="products-header">
       <div>
@@ -2031,455 +2039,8 @@
         <h2 class="section-title" style="text-align:left;margin-bottom:0;">Top Selling <span class="gold">Products</span></h2>
       </div>
     </div>
-    <div class="products-grid stagger-children">
-      <!-- COMPUTERS (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/destop 7.jpg" alt="Dell XPS 15" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Computers</span>
-          <h4>Dell XPS 15 Laptop</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(24)</span></div>
-          <div class="product-price">₦850,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/laptop 1.jpg" alt="MacBook Pro" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Computers</span>
-          <h4>Apple MacBook Pro 16"</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(18)</span></div>
-          <div class="product-price">₦1,200,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/destop 4.jpg" alt="HP Spectre" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Computers</span>
-          <h4>HP Spectre x360</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(15)</span></div>
-          <div class="product-price">₦720,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/laptop 3.jpg" alt="ThinkPad" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Computers</span>
-          <h4>Lenovo ThinkPad X1</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(20)</span></div>
-          <div class="product-price">₦680,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/destop 2.jpg" alt="iMac" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Computers</span>
-          <h4>Apple iMac 24"</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(22)</span></div>
-          <div class="product-price">₦1,100,000</div>
-        </div>
-      </div>
-      <!-- FURNITURE (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/single chair 1.jpg" alt="Executive Chair" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Furniture</span>
-          <h4>Executive Leather Chair</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(32)</span></div>
-          <div class="product-price">₦250,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/single chair 10.jpg" alt="Ergonomic Chair" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Furniture</span>
-          <h4>Ergonomic Office Chair</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(28)</span></div>
-          <div class="product-price">₦180,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/Table & Chair 2.jpg" alt="Office Desk" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Furniture</span>
-          <h4>Executive Office Desk</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(25)</span></div>
-          <div class="product-price">₦320,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/Table & Chair 4.jpg" alt="Reception Sofa" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Furniture</span>
-          <h4>Reception Sofa Set</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(12)</span></div>
-          <div class="product-price">₦450,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/conf table 8.jpg" alt="Conference Table" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Furniture</span>
-          <h4>Conference Table</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(20)</span></div>
-          <div class="product-price">₦500,000</div>
-        </div>
-      </div>
-      <!-- PRINTERS (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/printer 1.jpg" alt="LaserJet Pro" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Printers</span>
-          <h4>HP LaserJet Pro MFP</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(18)</span></div>
-          <div class="product-price">₦320,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/printer 10.jpg" alt="EcoTank" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Printers</span>
-          <h4>Epson EcoTank Printer</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(20)</span></div>
-          <div class="product-price">₦220,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/printer 11.jpg" alt="Canon Printer" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Printers</span>
-          <h4>Canon PIXMA G7020</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(16)</span></div>
-          <div class="product-price">₦240,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/printer 12.jpg" alt="WorkForce Pro" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Printers</span>
-          <h4>Epson WorkForce Pro</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(19)</span></div>
-          <div class="product-price">₦310,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/printer 13.jpg" alt="MAXIFY" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Printers</span>
-          <h4>Canon MAXIFY MB2720</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(13)</span></div>
-          <div class="product-price">₦270,000</div>
-        </div>
-      </div>
-      <!-- INKS & TONERS (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/toner 1.jpg" alt="HP Ink" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Inks & Toners</span>
-          <h4>HP 67 Black Ink Cartridge</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(45)</span></div>
-          <div class="product-price">₦12,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies//toner 10.jpg" alt="Epson Ink" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Inks & Toners</span>
-          <h4>Epson T664 Ink Bottles</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(52)</span></div>
-          <div class="product-price">₦8,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/toner 11.jpg" alt="Canon Ink" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Inks & Toners</span>
-          <h4>Canon CLI-281 Ink Set</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(38)</span></div>
-          <div class="product-price">₦18,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/toner 13.jpg" alt="Toner" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Inks & Toners</span>
-          <h4>Brother TN-760 Toner</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(30)</span></div>
-          <div class="product-price">₦22,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/toner 12.jpg" alt="HP Combo" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Inks & Toners</span>
-          <h4>HP 65XL Combo Pack</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(28)</span></div>
-          <div class="product-price">₦15,000</div>
-        </div>
-      </div>
-      <!-- STATIONERY (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/station 10.jpg" alt="Notebook" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Stationery</span>
-          <h4>Premium Notebook A4</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(120)</span></div>
-          <div class="product-price">₦800</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/station 1.jpg" alt="Pen Set" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Stationery</span>
-          <h4>Executive Pen Set</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(95)</span></div>
-          <div class="product-price">₦2,500</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/desk organizer set.jpg" alt="Desk Organizer" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Stationery</span>
-          <h4>Desk Organizer Set</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(85)</span></div>
-          <div class="product-price">₦3,200</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/station 18.jpg" alt="Sticky Notes" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Stationery</span>
-          <h4>Sticky Notes Set</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(150)</span></div>
-          <div class="product-price">₦400</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/leather portfolio.jpg" alt="Leather Portfolio" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Stationery</span>
-          <h4>Leather Portfolio</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(75)</span></div>
-          <div class="product-price">₦4,500</div>
-        </div>
-      </div>
-      <!-- OFFICE MACHINES (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/shredder.jpg" alt="Shredder" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Machines</span>
-          <h4>Paper Shredder Pro</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(28)</span></div>
-          <div class="product-price">₦45,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/laminating mash.jpg" alt="Laminator" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Machines</span>
-          <h4>Laminating Machine</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(20)</span></div>
-          <div class="product-price">₦28,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/binding mash.jpg" alt="Binding Machine" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Machines</span>
-          <h4>Office Binding Machine</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(18)</span></div>
-          <div class="product-price">₦35,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="/imagies/label mash.jpg" alt="Label Maker" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Machines</span>
-          <h4>Label Maker Machine</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(32)</span></div>
-          <div class="product-price">₦22,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/currency mash.jpg" alt="Currency Counter" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Machines</span>
-          <h4>Currency Counter</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(25)</span></div>
-          <div class="product-price">₦58,000</div>
-        </div>
-      </div>
-      <!-- ACCESSORIES (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/wireless keyboard.jpg" alt="Keyboard" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Accessories</span>
-          <h4>Wireless Keyboard & Mouse</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(45)</span></div>
-          <div class="product-price">₦15,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/dual monitor mash.jpg" alt="Monitor Stand" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Accessories</span>
-          <h4>Dual Monitor Stand</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(38)</span></div>
-          <div class="product-price">₦22,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/cooling pad.jpg" alt="Cooling Pad" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Accessories</span>
-          <h4>Laptop Cooling Pad</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(55)</span></div>
-          <div class="product-price">₦8,500</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/webcam.jpg" alt="Webcam" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Accessories</span>
-          <h4>Webcam HD Pro</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(35)</span></div>
-          <div class="product-price">₦25,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/headset noise.jpg" alt="Headset" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Accessories</span>
-          <h4>Headset Noise-Cancelling</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(40)</span></div>
-          <div class="product-price">₦32,000</div>
-        </div>
-      </div>
-      <!-- SMART TECH (5 products) -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/smart whiteboard.jpg" alt="Smart Whiteboard" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Smart Tech</span>
-          <h4>Smart Whiteboard Interactive</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(18)</span></div>
-          <div class="product-price">₦95,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/video confference sys.jpg" alt="Video Conference" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Smart Tech</span>
-          <h4>Video Conference System</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(22)</span></div>
-          <div class="product-price">₦120,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/smart speaker.jpg" alt="Smart Speaker" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Smart Tech</span>
-          <h4>Smart Speaker Assistant</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(35)</span></div>
-          <div class="product-price">₦28,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/smart lighting system.jpg" alt="Smart Lighting" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Smart Tech</span>
-          <h4>Smart Lighting System</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(28)</span></div>
-          <div class="product-price">₦55,000</div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image">
-          <img src="imagies/digital signage display.jpg" alt="Digital Signage" loading="lazy" />
-        </div>
-        <div class="product-info">
-          <span class="product-category-tag">Smart Tech</span>
-          <h4>Digital Signage Display</h4>
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(15)</span></div>
-          <div class="product-price">₦150,000</div>
-        </div>
-      </div>
+    <div class="products-grid stagger-children" id="topProducts">
+      <!-- Products will be loaded dynamically with lazy loading -->
     </div>
   </section>
 
@@ -2528,21 +2089,21 @@
     <h2 class="section-title">Recent <span class="gold">Projects</span></h2>
     <div class="portfolio-grid stagger-children">
       <div class="portfolio-item">
-        <img src="/imagies/conf table 9.jpg" alt="Office Installation" loading="lazy" />
+        <img src="imagies/conf table 9.jpg" alt="Office Installation" loading="lazy" />
         <div class="portfolio-overlay">
           <h4>Corporate HQ Setup</h4>
           <p>Complete office furniture installation</p>
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="/imagies/conf table 8.jpg" alt="Conference Room" loading="lazy" />
+        <img src="imagies/conf table 8.jpg" alt="Conference Room" loading="lazy" />
         <div class="portfolio-overlay">
           <h4>Executive Conference Room</h4>
           <p>Smart board & video conferencing</p>
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="/imagies/Table & Chair 4.jpg" alt="Open Office" loading="lazy" />
+        <img src="imagies/Table & Chair 4.jpg" alt="Open Office" loading="lazy" />
         <div class="portfolio-overlay">
           <h4>Open Plan Office</h4>
           <p>Modern workspace design</p>
@@ -2581,7 +2142,7 @@
         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <blockquote>"The best office solution provider in Nigeria. Their designs are modern, durable, and perfectly aligned with our brand."</blockquote>
         <div class="testimonial-author">
-          <img src="/imagies/woman ceo.jpg" alt="Client" loading="lazy" />
+          <img src="imagies/woman ceo.jpg" alt="Client" loading="lazy" />
           <div><h4>Chioma Okafor</h4><span>Director, Bloom Consulting</span></div>
         </div>
       </div>
@@ -2589,7 +2150,7 @@
         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <blockquote>"From consultation to delivery, the experience was seamless. Our new office looks world-class thanks to Office Land."</blockquote>
         <div class="testimonial-author">
-          <img src="/imagies/man ceo 1.jpg" alt="Client" loading="lazy" />
+          <img src="imagies/man ceo 1.jpg" alt="Client" loading="lazy" />
           <div><h4>Emeka Nwosu</h4><span>Managing Partner, Sterling Partners</span></div>
         </div>
       </div>
@@ -2602,7 +2163,7 @@
     <h2 class="section-title">From Our <span class="gold">Blog</span></h2>
     <div class="blog-grid stagger-children">
       <div class="blog-card">
-        <img src="/imagies/Table & Chair 3.jpg" alt="Blog 1" loading="lazy" />
+        <img src="imagies/Table & Chair 3.jpg" alt="Blog 1" loading="lazy" />
         <div class="blog-card-content">
           <div class="tag">Workspace</div>
           <h4>5 Tips to Design a Productive Workspace</h4>
@@ -2610,7 +2171,7 @@
         </div>
       </div>
       <div class="blog-card">
-        <img src="/imagies/Table & Chair 1.jpg" alt="Blog 2" loading="lazy" />
+        <img src="imagies/Table & Chair 1.jpg" alt="Blog 2" loading="lazy" />
         <div class="blog-card-content">
           <div class="tag">Ergonomics</div>
           <h4>Benefits of Ergonomic Office Chairs</h4>
@@ -2618,7 +2179,7 @@
         </div>
       </div>
       <div class="blog-card">
-        <img src="/imagies/Conf Table 1.jpg" alt="Blog 3" loading="lazy" />
+        <img src="imagies/Conf Table 1.jpg" alt="Blog 3" loading="lazy" />
         <div class="blog-card-content">
           <div class="tag">Sustainability</div>
           <h4>Creating Sustainable Workspaces</h4>
@@ -2637,7 +2198,7 @@
         <p>Get a customized quote for your office setup today. We deliver premium solutions for businesses of all sizes.</p>
       </div>
     </div>
-    <a href="/qoute.html" class="btn-gold" style="white-space:nowrap;font-size:15px;padding:16px 36px;">Request a Corporate Quote <i class="fas fa-arrow-right"></i></a>
+    <a href="qoute.html" class="btn-gold" style="white-space:nowrap;font-size:15px;padding:16px 36px;">Request a Corporate Quote <i class="fas fa-arrow-right"></i></a>
   </div>
 
   <!-- FOOTER -->
@@ -2805,7 +2366,115 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    console.log('Office Land Ltd – Premium Corporate Platform fully loaded.');
+    // ─── LAZY LOAD TOP SELLING PRODUCTS ──────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+      // Product data with local image paths
+      const products = [
+        // COMPUTERS (5 products)
+        { category: 'Computers', name: 'Dell XPS 15 Laptop', stars: 5, reviews: 24, price: '₦850,000', img: 'imagies/destop 7.jpg' },
+        { category: 'Computers', name: 'Apple MacBook Pro 16"', stars: 5, reviews: 18, price: '₦1,200,000', img: 'imagies/laptop 1.jpg' },
+        { category: 'Computers', name: 'HP Spectre x360', stars: 4.5, reviews: 15, price: '₦720,000', img: 'imagies/destop 4.jpg' },
+        { category: 'Computers', name: 'Lenovo ThinkPad X1', stars: 4.5, reviews: 20, price: '₦680,000', img: 'imagies/laptop 3.jpg' },
+        { category: 'Computers', name: 'Apple iMac 24"', stars: 5, reviews: 22, price: '₦1,100,000', img: 'imagies/destop 2.jpg' },
+        // FURNITURE (5 products)
+        { category: 'Furniture', name: 'Executive Leather Chair', stars: 5, reviews: 32, price: '₦250,000', img: 'imagies/single chair 1.jpg' },
+        { category: 'Furniture', name: 'Ergonomic Office Chair', stars: 4.5, reviews: 28, price: '₦180,000', img: 'imagies/single chair 10.jpg' },
+        { category: 'Furniture', name: 'Executive Office Desk', stars: 5, reviews: 25, price: '₦320,000', img: 'imagies/Table & Chair 2.jpg' },
+        { category: 'Furniture', name: 'Reception Sofa Set', stars: 4.5, reviews: 12, price: '₦450,000', img: 'imagies/Table & Chair 4.jpg' },
+        { category: 'Furniture', name: 'Conference Table', stars: 5, reviews: 20, price: '₦500,000', img: 'imagies/conf table 8.jpg' },
+        // PRINTERS (5 products)
+        { category: 'Printers', name: 'HP LaserJet Pro MFP', stars: 4.5, reviews: 18, price: '₦320,000', img: 'imagies/printer 1.jpg' },
+        { category: 'Printers', name: 'Epson EcoTank Printer', stars: 5, reviews: 20, price: '₦220,000', img: 'imagies/printer 10.jpg' },
+        { category: 'Printers', name: 'Canon PIXMA G7020', stars: 5, reviews: 16, price: '₦240,000', img: 'imagies/printer 11.jpg' },
+        { category: 'Printers', name: 'Epson WorkForce Pro', stars: 4.5, reviews: 19, price: '₦310,000', img: 'imagies/printer 12.jpg' },
+        { category: 'Printers', name: 'Canon MAXIFY MB2720', stars: 5, reviews: 13, price: '₦270,000', img: 'imagies/printer 13.jpg' },
+        // INKS & TONERS (5 products)
+        { category: 'Inks & Toners', name: 'HP 67 Black Ink Cartridge', stars: 5, reviews: 45, price: '₦12,000', img: 'imagies/toner 1.jpg' },
+        { category: 'Inks & Toners', name: 'Epson T664 Ink Bottles', stars: 5, reviews: 52, price: '₦8,000', img: 'imagies/toner 10.jpg' },
+        { category: 'Inks & Toners', name: 'Canon CLI-281 Ink Set', stars: 5, reviews: 38, price: '₦18,000', img: 'imagies/toner 11.jpg' },
+        { category: 'Inks & Toners', name: 'Brother TN-760 Toner', stars: 5, reviews: 30, price: '₦22,000', img: 'imagies/toner 13.jpg' },
+        { category: 'Inks & Toners', name: 'HP 65XL Combo Pack', stars: 4.5, reviews: 28, price: '₦15,000', img: 'imagies/toner 12.jpg' },
+        // STATIONERY (5 products)
+        { category: 'Stationery', name: 'Premium Notebook A4', stars: 5, reviews: 120, price: '₦800', img: 'imagies/station 10.jpg' },
+        { category: 'Stationery', name: 'Executive Pen Set', stars: 5, reviews: 95, price: '₦2,500', img: 'imagies/station 1.jpg' },
+        { category: 'Stationery', name: 'Desk Organizer Set', stars: 5, reviews: 85, price: '₦3,200', img: 'imagies/desk organizer set.jpg' },
+        { category: 'Stationery', name: 'Sticky Notes Set', stars: 4.5, reviews: 150, price: '₦400', img: 'imagies/station 18.jpg' },
+        { category: 'Stationery', name: 'Leather Portfolio', stars: 5, reviews: 75, price: '₦4,500', img: 'imagies/leather portfolio.jpg' },
+        // OFFICE MACHINES (5 products)
+        { category: 'Machines', name: 'Paper Shredder Pro', stars: 5, reviews: 28, price: '₦45,000', img: 'imagies/shredder.jpg' },
+        { category: 'Machines', name: 'Laminating Machine', stars: 4.5, reviews: 20, price: '₦28,000', img: 'imagies/laminating mash.jpg' },
+        { category: 'Machines', name: 'Office Binding Machine', stars: 5, reviews: 18, price: '₦35,000', img: 'imagies/binding mash.jpg' },
+        { category: 'Machines', name: 'Label Maker Machine', stars: 5, reviews: 32, price: '₦22,000', img: 'imagies/label mash.jpg' },
+        { category: 'Machines', name: 'Currency Counter', stars: 5, reviews: 25, price: '₦58,000', img: 'imagies/currency mash.jpg' },
+        // ACCESSORIES (5 products)
+        { category: 'Accessories', name: 'Wireless Keyboard & Mouse', stars: 5, reviews: 45, price: '₦15,000', img: 'imagies/wireless keyboard.jpg' },
+        { category: 'Accessories', name: 'Dual Monitor Stand', stars: 5, reviews: 38, price: '₦22,000', img: 'imagies/dual monitor mash.jpg' },
+        { category: 'Accessories', name: 'Laptop Cooling Pad', stars: 4.5, reviews: 55, price: '₦8,500', img: 'imagies/cooling pad.jpg' },
+        { category: 'Accessories', name: 'Webcam HD Pro', stars: 5, reviews: 35, price: '₦25,000', img: 'imagies/webcam.jpg' },
+        { category: 'Accessories', name: 'Headset Noise-Cancelling', stars: 5, reviews: 40, price: '₦32,000', img: 'imagies/headset noise.jpg' },
+        // SMART TECH (5 products)
+        { category: 'Smart Tech', name: 'Smart Whiteboard Interactive', stars: 5, reviews: 18, price: '₦95,000', img: 'imagies/smart whiteboard.jpg' },
+        { category: 'Smart Tech', name: 'Video Conference System', stars: 5, reviews: 22, price: '₦120,000', img: 'imagies/video confference sys.jpg' },
+        { category: 'Smart Tech', name: 'Smart Speaker Assistant', stars: 5, reviews: 35, price: '₦28,000', img: 'imagies/smart speaker.jpg' },
+        { category: 'Smart Tech', name: 'Smart Lighting System', stars: 5, reviews: 28, price: '₦55,000', img: 'imagies/smart lighting system.jpg' },
+        { category: 'Smart Tech', name: 'Digital Signage Display', stars: 5, reviews: 15, price: '₦150,000', img: 'imagies/digital signage display.jpg' }
+      ];
+
+      const grid = document.getElementById('topProducts');
+      
+      // Use requestAnimationFrame for better performance
+      requestAnimationFrame(() => {
+        products.forEach((product, index) => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          
+          // Generate stars HTML
+          let starsHTML = '';
+          const fullStars = Math.floor(product.stars);
+          const hasHalfStar = product.stars % 1 >= 0.5;
+          for (let i = 0; i < fullStars; i++) {
+            starsHTML += '<i class="fas fa-star"></i>';
+          }
+          if (hasHalfStar) {
+            starsHTML += '<i class="fas fa-star-half-alt"></i>';
+          }
+          const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+          for (let i = 0; i < emptyStars; i++) {
+            starsHTML += '<i class="far fa-star"></i>';
+          }
+
+          card.innerHTML = `
+            <div class="product-image">
+              <img src="${product.img}" alt="${product.name}" loading="lazy" />
+            </div>
+            <div class="product-info">
+              <span class="product-category-tag">${product.category}</span>
+              <h4>${product.name}</h4>
+              <div class="stars">
+                ${starsHTML}
+                <span>(${product.reviews})</span>
+              </div>
+              <div class="product-price">${product.price}</div>
+            </div>
+          `;
+          
+          // Staggered loading with Intersection Observer
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(30px)';
+          card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          
+          grid.appendChild(card);
+          
+          // Stagger the appearance
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 100 + (index * 80));
+        });
+      });
+    });
+
+    console.log('Office Land Ltd – Premium Corporate Platform fully loaded with optimized image loading.');
   </script>
 </body>
 </html>
