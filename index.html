@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Office Land Ltd – Premium Office Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1e1e1e;
+      background: #faf9f6;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ─── COLORS ─────────────────────────────────────────────────── */
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-glow: rgba(201, 168, 76, 0.25);
+      --navy: #1A2A4A;
+      --navy-dark: #111E35;
+      --white: #ffffff;
+      --gray-100: #F8F6F2;
+      --gray-200: #EBE7DE;
+      --gray-400: #a09888;
+      --gray-600: #5e5546;
+      --text: #1e1e1e;
+      --shadow-sm: 0 8px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.10);
+    }
+
+    /* ─── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes goldPulse {
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(201, 168, 76, 0);
+      }
+    }
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-children>* {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .stagger-children.visible>*:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+    .stagger-children.visible>*:nth-child(2) {
+      transition-delay: 0.10s;
+    }
+    .stagger-children.visible>*:nth-child(3) {
+      transition-delay: 0.15s;
+    }
+    .stagger-children.visible>*:nth-child(4) {
+      transition-delay: 0.20s;
+    }
+    .stagger-children.visible>*:nth-child(5) {
+      transition-delay: 0.25s;
+    }
+    .stagger-children.visible>*:nth-child(6) {
+      transition-delay: 0.30s;
+    }
+    .stagger-children.visible>* {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── TOP BAR ───────────────────────────────────────────────── */
+    .topbar {
+      background: var(--navy);
+      color: #ccc;
+      font-size: 12px;
+      padding: 8px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    }
+    .topbar a {
+      color: #ccc;
+      margin-left: 24px;
+      transition: color 0.2s;
+    }
+    .topbar a:hover {
+      color: var(--gold);
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar-left i {
+      color: var(--gold);
+    }
+
+    /* ─── HEADER / NAV ──────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      padding: 0 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      transition: background 0.3s;
+    }
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 135px;
+      width: auto;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+
+/* Subtle premium hover effect */
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(26, 42, 74, 0.2);
+    }
+    .logo-text h1 {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+    .logo-text p {
+      font-size: 10px;
+      color: var(--gray-600);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-item>a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+      position: relative;
+    }
+    .nav-item>a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    .nav-item>a:hover::after,
+    .nav-item>a.active::after {
+      width: 60%;
+    }
+    .nav-item>a:hover,
+    .nav-item>a.active {
+      color: var(--gold);
+    }
+    .nav-item>a i {
+      font-size: 10px;
+      opacity: 0.6;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 16px 0;
+      min-width: 220px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown a {
+      display: block;
+      padding: 8px 24px;
+      font-size: 13px;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .dropdown a:hover {
+      background: rgba(201, 168, 76, 0.06);
+      color: var(--gold);
+      padding-left: 28px;
+    }
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    /* Removed nav-icons a styling since icons are removed */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--navy);
+      transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 20px 30px;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      z-index: 999;
+      animation: slideUp 0.3s ease;
+      max-height: calc(100vh - 76px);
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      display: block;
+    }
+    .mobile-menu .mobile-nav-item {
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .mobile-menu .mobile-nav-item>a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .mobile-menu .mobile-nav-item>a:hover {
+      color: var(--gold);
+    }
+    .mobile-dropdown {
+      display: none;
+      padding-left: 16px;
+      background: var(--gray-100);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .mobile-dropdown.open {
+      display: block;
+    }
+    .mobile-dropdown a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 14px;
+      color: var(--text);
+      border-bottom: 1px solid var(--gray-200);
+      transition: all 0.2s;
+    }
+    .mobile-dropdown a:hover {
+      color: var(--gold);
+      padding-left: 20px;
+    }
+    .mobile-dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      background: #f5f2ec;
+      overflow: hidden;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(201, 168, 76, 0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-slide {
+      display: none;
+      width: 100%;
+      animation: scaleIn 0.7s ease;
+    }
+    .hero-slide.active {
+      display: flex;
+      align-items: center;
+    }
+    .hero-content {
+      flex: 1;
+      padding: 70px 60px 70px 80px;
+      max-width: 560px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content .fade-in {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .hero-content .fade-in:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    .hero-content .fade-in:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    .hero-content .fade-in:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+    .hero-content .fade-in:nth-child(4) {
+      animation-delay: 0.7s;
+    }
+    .hero-content .fade-in:nth-child(5) {
+      animation-delay: 0.9s;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+    .hero-title span {
+      color: var(--gold);
+      font-style: italic;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--gray-600);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      max-width: 400px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(26, 42, 74, 0.2);
+    }
+    .btn-primary:hover {
+      background: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--navy);
+      color: var(--navy);
+      padding: 13px 30px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.15);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+    }
+    .btn-gold:hover {
+      background: #b8952e;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.4);
+    }
+    .hero-image {
+      flex: 1;
+      max-width: 52%;
+      height: 560px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 6s ease;
+    }
+    .hero-slide.active .hero-image img {
+      transform: scale(1.03);
+    }
+
+    .hero-features {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 52%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      border-top: 1px solid rgba(201, 168, 76, 0.15);
+      z-index: 3;
+    }
+    .hero-feature {
+      flex: 1;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      border-right: 1px solid rgba(0, 0, 0, 0.04);
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-600);
+      transition: all 0.3s;
+    }
+    .hero-feature:hover {
+      background: rgba(201, 168, 76, 0.05);
+    }
+    .hero-feature:last-child {
+      border-right: none;
+    }
+    .hero-feature i {
+      color: var(--gold);
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .hero-feature strong {
+      font-size: 12px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .hero-arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .hero-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: var(--navy);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: all;
+      transition: all 0.25s;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .hero-arrow:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+      transform: scale(1.05);
+    }
+    .hero-dots {
+      position: absolute;
+      bottom: 70px;
+      left: 80px;
+      display: flex;
+      gap: 8px;
+      z-index: 4;
+    }
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gray-400);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .hero-dot.active {
+      background: var(--gold);
+      width: 28px;
+      border-radius: 6px;
+    }
+
+    /* ─── SECTION COMMON ───────────────────────────────────────── */
+    section {
+      padding: 80px 60px;
+    }
+    .section-eyebrow {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 44px;
+      line-height: 1.2;
+    }
+    .section-title .gold {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ─── SOLUTIONS SECTION ─────────────────────────────────────── */
+    .solutions {
+      background: #fff;
+    }
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .solution-card {
+      background: var(--gray-100);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .solution-card:hover::before {
+      transform: scaleX(1);
+    }
+    .solution-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+    .solution-card .icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 28px;
+      color: var(--gold);
+      transition: all 0.3s;
+    }
+    .solution-card:hover .icon-wrap {
+      background: var(--gold);
+      color: #fff;
+      transform: scale(1.1);
+    }
+    .solution-card h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .solution-card p {
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .solution-card .solution-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+    .solution-card .solution-link:hover {
+      gap: 14px;
+      color: #b8952e;
+    }
+
+    /* ─── WHY CHOOSE US ─────────────────────────────────────────── */
+    .why-choose {
+      background: var(--gray-100);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .why-item {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: var(--shadow-sm);
+    }
+    .why-item:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+    .why-item .icon-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      font-size: 24px;
+      color: var(--gold);
+      transition: all 0.3s;
+    }
+    .why-item:hover .icon-wrap {
+      background: var(--gold);
+      color: #fff;
+    }
+    .why-item h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .why-item p {
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ─── ALL SERVICES (CATEGORIES) ────────────────────────────── */
+    .all-services {
+      background: #fff;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--gray-100);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+    .service-card .icon-wrap {
+      font-size: 32px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .service-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .service-card span {
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+
+    /* ─── BUILD YOUR OFFICE ─────────────────────────────────────── */
+    .build-office {
+      background: var(--navy-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .build-office::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.05), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .build-office .section-title {
+      color: #fff;
+    }
+    .build-office .section-eyebrow {
+      color: var(--gold-light);
+    }
+    .build-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .build-content h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 16px;
+    }
+    .build-content p {
+      color: #aaa;
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .build-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .build-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #ddd;
+      font-size: 14px;
+    }
+    .build-feature i {
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .build-cta {
+      margin-top: 28px;
+    }
+    .build-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .build-visual-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s;
+    }
+    .build-visual-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+    }
+    .build-visual-item .number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+    }
+    .build-visual-item span {
+      display: block;
+      color: #aaa;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* ─── PORTFOLIO ─────────────────────────────────────────────── */
+    .portfolio {
+      background: #fff;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .portfolio-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.08);
+    }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 42, 74, 0.9), transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    .portfolio-overlay h4 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .portfolio-overlay p {
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    /* ─── TOP SELLING ───────────────────────────────────────────── */
+    .top-selling {
+      background: var(--gray-100);
+    }
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .products-header .section-title {
+      margin-bottom: 0;
+      text-align: left;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+    .product-image {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .product-card:hover .product-image img {
+      transform: scale(1.06);
+    }
+    .product-info {
+      padding: 16px 16px 20px;
+    }
+    .product-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      margin-bottom: 8px;
+    }
+    .stars i {
+      font-size: 12px;
+      color: var(--gold);
+    }
+    .stars span {
+      font-size: 11px;
+      color: var(--gray-400);
+      margin-left: 6px;
+    }
+    .product-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .product-card .product-category-tag {
+      display: inline-block;
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold);
+      padding: 2px 12px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    /* ─── BRANDS ────────────────────────────────────────────────── */
+    .brands-section {
+      background: #fff;
+      padding: 50px 60px;
+    }
+    .brands-eyebrow {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .brands-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .brand-logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gray-400);
+      letter-spacing: -0.5px;
+      transition: all 0.3s;
+      cursor: default;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+    .brand-logo:hover {
+      color: var(--navy);
+      background: rgba(201, 168, 76, 0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ─── TESTIMONIALS ──────────────────────────────────────────── */
+    .testimonials {
+      background: var(--gray-100);
+      padding: 80px 60px;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 28px;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+    .testimonial-card .stars {
+      margin-bottom: 12px;
+    }
+    .testimonial-card blockquote {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-author img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+    }
+    .testimonial-author h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .testimonial-author span {
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+
+    /* ─── BLOG ──────────────────────────────────────────────────── */
+    .blog-section {
+      background: #fff;
+      padding: 80px 60px;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .blog-card {
+      background: var(--gray-100);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+    .blog-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .blog-card:hover img {
+      transform: scale(1.03);
+    }
+    .blog-card-content {
+      padding: 22px 24px 26px;
+    }
+    .blog-card-content .tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .blog-card-content h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .blog-card-content a {
+      font-size: 13px;
+      color: var(--navy);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .blog-card-content a:hover {
+      color: var(--gold);
+      gap: 12px;
+    }
+
+    /* ─── CTA BANNER ───────────────────────────────────────────── */
+    .cta-banner {
+      background: var(--navy-dark);
+      padding: 60px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-top: 1px solid rgba(201, 168, 76, 0.15);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.05), transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 24px;
+      flex-shrink: 0;
+      animation: goldPulse 2.5s infinite;
+    }
+    .cta-text h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+    }
+    .cta-text p {
+      font-size: 15px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      padding: 60px 60px 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+      gap: 36px;
+    }
+    .footer-brand .logo-text h1 {
+      color: #fff;
+    }
+    .footer-brand .logo-text p {
+      color: #aaa;
+    }
+    .footer-brand p {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 16px 0 20px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 14px;
+      transition: all 0.25s;
+    }
+    .footer-social a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+    .footer-col li a {
+      font-size: 13px;
+      color: #aaa;
+      transition: color 0.2s;
+    }
+    .footer-col li a:hover {
+      color: var(--gold);
+      padding-left: 4px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .contact-item i {
+      color: var(--gold);
+      font-size: 14px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .contact-item span {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 44px;
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-bottom span {
+      font-size: 12px;
+      color: #777;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: #777;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+    .payment-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .payment-icon {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: #ccc;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+    }
+    .payment-icon:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* ─── FLOATING WHATSAPP ────────────────────────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      animation: float 3s ease-in-out infinite;
+    }
+    .whatsapp-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 32px;
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s;
+    }
+    .whatsapp-float a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 40px rgba(37, 211, 102, 0.5);
+    }
+
+    /* ─── BACK TO TOP ───────────────────────────────────────────── */
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 28px;
+      z-index: 998;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+      transition: all 0.3s;
+    }
+    .back-to-top.visible {
+      display: flex;
+    }
+    .back-to-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(201, 168, 76, 0.5);
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 1200px) {
+      .service-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .testimonial-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 992px) {
+      section {
+        padding: 60px 30px;
+      }
+      .topbar {
+        padding: 6px 30px;
+        font-size: 11px;
+        flex-wrap: wrap;
+      }
+      header {
+        padding: 0 30px;
+        height: 64px;
+      }
+      .nav-desktop .nav-item>a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      .hero-content {
+        padding: 40px 30px;
+      }
+      .hero-title {
+        font-size: 34px;
+      }
+      .hero-image {
+        height: 420px;
+      }
+      .hero-features {
+        right: 0;
+        flex-wrap: wrap;
+      }
+      .hero-feature {
+        flex: 1 0 50%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      .blog-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .perks-bar {
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 20px 30px;
+      }
+      .brands-row {
+        gap: 12px;
+      }
+      .cta-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 30px;
+      }
+      .cta-left {
+        flex-direction: column;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .build-grid {
+        grid-template-columns: 1fr;
+      }
+      .build-visual {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .topbar {
+        display: none;
+      }
+      header {
+        padding: 0 16px;
+        height: 58px;
+      }
+      .nav-desktop {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    @media (max-width: 640px) {
+      header {
+        padding: 0 16px;
+        height: 58px;
+      }
+      .hero {
+        min-height: 480px;
+      }
+      .hero-slide.active {
+        flex-direction: column;
+      }
+      .hero-content {
+        padding: 30px 20px 20px;
+        max-width: 100%;
+      }
+      .hero-title {
+        font-size: 28px;
+      }
+      .hero-image {
+        max-width: 100%;
+        height: 260px;
+        width: 100%;
+      }
+      .hero-features {
+        position: relative;
+        right: 0;
+        flex-wrap: wrap;
+      }
+      .hero-feature {
+        flex: 1 0 50%;
+        padding: 12px 8px;
+      }
+      .hero-dots {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .hero-arrows {
+        padding: 0 8px;
+      }
+      .hero-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
+      }
+      section {
+        padding: 40px 16px;
+      }
+      .section-title {
+        font-size: 26px;
+      }
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+      .perks-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 20px;
+      }
+      .brands-section {
+        padding: 30px 16px;
+      }
+      .brand-logo {
+        font-size: 18px;
+        padding: 4px 10px;
+      }
+      .cta-banner {
+        padding: 24px 16px;
+      }
+      .cta-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+      .cta-text h3 {
+        font-size: 17px;
+      }
+      footer {
+        padding: 40px 16px 20px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+      }
+      .whatsapp-float a {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+      }
+      .back-to-top {
+        bottom: 80px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+      }
+      .solutions-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .build-features {
+        grid-template-columns: 1fr;
+      }
+      .build-visual {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <i class="fas fa-circle-check"></i>
+      We deliver premium office solutions across Nigeria. Quality. Durability. Excellence.
+    </div>
+    <div class="topbar-right">
+      <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
+      <a href="contact.html"><i class="fas fa-headset"></i> Support</a>
+      <a href="#">English <i class="fas fa-chevron-down" style="font-size:9px;"></i></a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+  <a href="index.html" class="logo-link">
+    <img src="Logo.png" alt="Office Land Ltd Logo" class="logo-img">
+  </a>
+</div>
+    <nav class="nav-desktop">
+      <div class="nav-item"><a href="#" class="active">Home</a></div>
+      <div class="nav-item">
+        <a href="products.html">Products <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown">
+          <a href="products.html">Computers</a>
+          <a href="products.html">Office Furniture</a>
+          <a href="products.html">Printers & Scanners</a>
+          <a href="products.html">Inks & Toners</a>
+          <a href="products.html">Stationery</a>
+          <a href="products.html">Office Machines</a>
+          <a href="products.html">Accessories</a>
+          <a href="products.html">Smart Tech</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="solutions.html">Solutions <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown">
+          <a href="solutions.html">Office Setup Solutions</a>
+          <a href="solutions.html">Smart Office Technology</a>
+          <a href="solutions.html">Corporate Procurement</a>
+          <a href="solutions.html">Workspace Planning</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="about.html">About</a></div>
+      <div class="nav-item"><a href="portfolio.html">Portfolio</a></div>
+      <div class="nav-item"><a href="blog.html">Blog</a></div>
+      <div class="nav-item"><a href="contact.html">Contact</a></div>
+      <div class="nav-item"><a href="quote.html" style="color:var(--gold);font-weight:700;">Request Quote</a></div>
+    </nav>
+    <div class="nav-icons">
+      <!-- Search bar, Account, Wishlist, and Cart icons have been removed -->
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-item"><a href="index.html">Home</a></div>
+    <div class="mobile-nav-item">
+      <a href="products.html" onclick="toggleMobileDropdown('productsDropdown')">Products <i class="fas fa-chevron-down"></i></a>
+      <div class="mobile-dropdown" id="productsDropdown">
+        <a href="products.html">Computers</a>
+        <a href="products.html">Office Furniture</a>
+        <a href="products.html">Printers & Scanners</a>
+        <a href="products.html">Inks & Toners</a>
+        <a href="products.html">Stationery</a>
+        <a href="products.html">Office Machines</a>
+        <a href="products.html">Accessories</a>
+        <a href="products.html">Smart Tech</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <a href="solutions.html" onclick="toggleMobileDropdown('solutionsDropdown')">Solutions <i class="fas fa-chevron-down"></i></a>
+      <div class="mobile-dropdown" id="solutionsDropdown">
+        <a href="solutions.html">Office Setup Solutions</a>
+        <a href="solutions.html">Smart Office Technology</a>
+        <a href="solutions.html">Corporate Procurement</a>
+        <a href="solutions.html">Workspace Planning</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item"><a href="about.html">About</a></div>
+    <div class="mobile-nav-item"><a href="portfolio.html">Portfolio</a></div>
+    <div class="mobile-nav-item"><a href="blog.html">Blog</a></div>
+    <div class="mobile-nav-item"><a href="contact.html">Contact</a></div>
+    <div class="mobile-nav-item"><a href="quote.html" style="color:var(--gold);font-weight:700;">Request Quote</a></div>
+  </div>
+
+  <!-- HERO SLIDER -->
+  <div class="hero" id="hero">
+    <!-- Slide 1 -->
+    <div class="hero-slide active" id="slide-0">
+      <div class="hero-content">
+        <div class="hero-eyebrow fade-in">Welcome to Office Land Ltd</div>
+        <h2 class="hero-title fade-in">
+          Premium Furniture.<br />
+          Smart Solutions.<br />
+          <span>Better Workspaces.</span>
+        </h2>
+        <p class="hero-desc fade-in">Explore our curated collection of high-end office furniture and technology solutions designed for the modern executive.</p>
+        <div class="hero-btns fade-in">
+          <a href="qoute.html" class="btn-primary">Request a Corporate Quote <i class="fas fa-arrow-right"></i></a>
+          <a href="solutions.html" class="btn-outline">Explore Solutions <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="fade-in" style="margin-top:28px;display:flex;align-items:center;gap:12px;">
+          <div style="display:flex;gap:2px;font-size:14px;color:var(--gold);">★★★★★</div>
+          <span style="font-size:12px;color:var(--gray-600);">Trusted by 500+ businesses</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="imagies/Table & Chair 2.jpg" alt="Premium Office Chair" />
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="hero-slide" id="slide-1">
+      <div class="hero-content">
+        <div class="hero-eyebrow fade-in">New Arrivals 2026</div>
+        <h2 class="hero-title fade-in">
+          Elegant Desks.<br />
+          Ergonomic Design.<br />
+          <span>Work Smarter.</span>
+        </h2>
+        <p class="hero-desc fade-in">Discover our latest collection of executive desks and ergonomic chairs built for the modern professional.</p>
+        <div class="hero-btns fade-in">
+          <a href="qoute.html" class="btn-primary">Request a Corporate Quote <i class="fas fa-arrow-right"></i></a>
+          <a href="products.html" class="btn-outline">View Collection <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="fade-in" style="margin-top:28px;display:flex;align-items:center;gap:12px;">
+          <div style="display:flex;gap:2px;font-size:14px;color:var(--gold);">★★★★★</div>
+          <span style="font-size:12px;color:var(--gray-600);">Trusted by 500+ businesses</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="imagies/single chair 7.jpg" alt="Office Desk" />
+      </div>
+    </div>
+
+    <!-- Features Bar -->
+    <div class="hero-features">
+      <div class="hero-feature"><i class="fas fa-award"></i><strong>Premium Quality</strong><span>Long Lasting</span></div>
+      <div class="hero-feature"><i class="fas fa-truck"></i><strong>Fast Delivery</strong><span>Across Nigeria</span></div>
+      <div class="hero-feature"><i class="fas fa-shield-halved"></i><strong>Secure Payment</strong><span>100% Protected</span></div>
+      <div class="hero-feature"><i class="fas fa-headset"></i><strong>24/7 Support</strong><span>We're Here</span></div>
+    </div>
+
+    <!-- Dots -->
+    <div class="hero-dots">
+      <div class="hero-dot active" onclick="goToSlide(0)"></div>
+      <div class="hero-dot" onclick="goToSlide(1)"></div>
+    </div>
+
+    <!-- Arrows -->
+    <div class="hero-arrows">
+      <div class="hero-arrow" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></div>
+      <div class="hero-arrow" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></div>
+    </div>
+  </div>
+
+  <!-- SOLUTIONS SECTION -->
+  <section class="solutions animate-on-scroll">
+    <p class="section-eyebrow">Our Solutions</p>
+    <h2 class="section-title">Comprehensive <span class="gold">Office Solutions</span></h2>
+    <div class="solutions-grid stagger-children">
+      <div class="solution-card">
+        <div class="icon-wrap"><i class="fas fa-building"></i></div>
+        <h4>Office Setup Solutions</h4>
+        <p>Complete office furniture and equipment setup for new offices and renovations.</p>
+        <a href="solutions.html" class="solution-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-card">
+        <div class="icon-wrap"><i class="fas fa-microchip"></i></div>
+        <h4>Smart Office Technology</h4>
+        <p>Integrated technology solutions including smart boards, video conferencing, and more.</p>
+        <a href="solutions.html" class="solution-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-card">
+        <div class="icon-wrap"><i class="fas fa-cart-flatbed"></i></div>
+        <h4>Corporate Procurement</h4>
+        <p>Streamlined procurement services for bulk office supplies and equipment.</p>
+        <a href="solutions.html" class="solution-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="solution-card">
+        <div class="icon-wrap"><i class="fas fa-pen-ruler"></i></div>
+        <h4>Workspace Planning</h4>
+        <p>Expert workspace design and layout planning to maximize productivity and comfort.</p>
+        <a href="solutions.html" class="solution-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-choose animate-on-scroll">
+    <p class="section-eyebrow">Why Choose Us</p>
+    <h2 class="section-title">Built on <span class="gold">Trust & Excellence</span></h2>
+    <div class="why-grid stagger-children">
+      <div class="why-item">
+        <div class="icon-wrap"><i class="fas fa-gem"></i></div>
+        <h4>Premium Quality Materials</h4>
+        <p>Only the finest materials sourced from trusted manufacturers worldwide.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap"><i class="fas fa-clock"></i></div>
+        <h4>15+ Years Durability</h4>
+        <p>Our products are engineered to last, backed by years of proven performance.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap"><i class="fas fa-rocket"></i></div>
+        <h4>Fast Delivery</h4>
+        <p>Nationwide delivery with professional installation and setup services.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap"><i class="fas fa-toolbox"></i></div>
+        <h4>Installation Support</h4>
+        <p>Expert installation and maintenance support to ensure seamless setup.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap"><i class="fas fa-shield"></i></div>
+        <h4>Warranty Assurance</h4>
+        <p>Comprehensive warranty coverage for complete peace of mind.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap"><i class="fas fa-handshake"></i></div>
+        <h4>Dedicated Support</h4>
+        <p>24/7 customer service and ongoing maintenance support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL SERVICES (CATEGORIES) -->
+  <section class="all-services animate-on-scroll">
+    <p class="section-eyebrow">All Categories</p>
+    <h2 class="section-title">Complete <span class="gold">Office Solutions</span></h2>
+    <div class="service-grid stagger-children">
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-laptop"></i></div>
+        <h4>Computers</h4>
+        <span>Desktops, Laptops & More</span>
+      </div>
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-couch"></i></div>
+        <h4>Office Furniture</h4>
+        <span>Chairs, Desks, Cabinets</span>
+      </div>
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-print"></i></div>
+        <h4>Printers & Scanners</h4>
+        <span>Multifunction Devices</span>
+      </div>
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-droplet"></i></div>
+        <h4>Inks & Toners</h4>
+        <span>Genuine & Compatible</span>
+      </div>
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-pen-fancy"></i></div>
+        <h4>Stationery</h4>
+        <span>Quality Office Supplies</span>
+      </div>
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-calculator"></i></div>
+        <h4>Office Machines</h4>
+        <span>Shredders, Laminators</span>
+      </div>
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-briefcase"></i></div>
+        <h4>Accessories</h4>
+        <span>Desk Organizers & More</span>
+      </div>
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-robot"></i></div>
+        <h4>Smart Tech</h4>
+        <span>Smartboards, IoT Devices</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP SELLING PRODUCTS -->
+  <section class="top-selling animate-on-scroll">
+    <div class="products-header">
+      <div>
+        <p class="section-eyebrow" style="text-align:left;margin-bottom:4px;">Best Sellers</p>
+        <h2 class="section-title" style="text-align:left;margin-bottom:0;">Top Selling <span class="gold">Products</span></h2>
+      </div>
+    </div>
+    <div class="products-grid stagger-children">
+      <!-- COMPUTERS (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/destop 7.jpg" alt="Dell XPS 15" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Computers</span>
+          <h4>Dell XPS 15 Laptop</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(24)</span></div>
+          <div class="product-price">₦850,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/laptop 1.jpg" alt="MacBook Pro" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Computers</span>
+          <h4>Apple MacBook Pro 16"</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(18)</span></div>
+          <div class="product-price">₦1,200,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/destop 4.jpg" alt="HP Spectre" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Computers</span>
+          <h4>HP Spectre x360</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(15)</span></div>
+          <div class="product-price">₦720,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/laptop 3.jpg" alt="ThinkPad" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Computers</span>
+          <h4>Lenovo ThinkPad X1</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(20)</span></div>
+          <div class="product-price">₦680,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/destop 2.jpg" alt="iMac" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Computers</span>
+          <h4>Apple iMac 24"</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(22)</span></div>
+          <div class="product-price">₦1,100,000</div>
+        </div>
+      </div>
+      <!-- FURNITURE (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/single chair 1.jpg" alt="Executive Chair" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Furniture</span>
+          <h4>Executive Leather Chair</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(32)</span></div>
+          <div class="product-price">₦250,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/single chair 10.jpg" alt="Ergonomic Chair" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Furniture</span>
+          <h4>Ergonomic Office Chair</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(28)</span></div>
+          <div class="product-price">₦180,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/Table & Chair 2.jpg" alt="Office Desk" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Furniture</span>
+          <h4>Executive Office Desk</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(25)</span></div>
+          <div class="product-price">₦320,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/Table & Chair 4.jpg" alt="Reception Sofa" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Furniture</span>
+          <h4>Reception Sofa Set</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(12)</span></div>
+          <div class="product-price">₦450,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/conf table 8.jpg" alt="Conference Table" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Furniture</span>
+          <h4>Conference Table</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(20)</span></div>
+          <div class="product-price">₦500,000</div>
+        </div>
+      </div>
+      <!-- PRINTERS (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/printer 1.jpg" alt="LaserJet Pro" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Printers</span>
+          <h4>HP LaserJet Pro MFP</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(18)</span></div>
+          <div class="product-price">₦320,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/printer 10.jpg" alt="EcoTank" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Printers</span>
+          <h4>Epson EcoTank Printer</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(20)</span></div>
+          <div class="product-price">₦220,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/printer 11.jpg" alt="Canon Printer" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Printers</span>
+          <h4>Canon PIXMA G7020</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(16)</span></div>
+          <div class="product-price">₦240,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/printer 12.jpg" alt="WorkForce Pro" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Printers</span>
+          <h4>Epson WorkForce Pro</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(19)</span></div>
+          <div class="product-price">₦310,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/printer 13.jpg" alt="MAXIFY" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Printers</span>
+          <h4>Canon MAXIFY MB2720</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(13)</span></div>
+          <div class="product-price">₦270,000</div>
+        </div>
+      </div>
+      <!-- INKS & TONERS (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/toner 1.jpg" alt="HP Ink" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Inks & Toners</span>
+          <h4>HP 67 Black Ink Cartridge</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(45)</span></div>
+          <div class="product-price">₦12,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies//toner 10.jpg" alt="Epson Ink" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Inks & Toners</span>
+          <h4>Epson T664 Ink Bottles</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(52)</span></div>
+          <div class="product-price">₦8,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/toner 11.jpg" alt="Canon Ink" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Inks & Toners</span>
+          <h4>Canon CLI-281 Ink Set</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(38)</span></div>
+          <div class="product-price">₦18,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/toner 13.jpg" alt="Toner" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Inks & Toners</span>
+          <h4>Brother TN-760 Toner</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(30)</span></div>
+          <div class="product-price">₦22,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/toner 12.jpg" alt="HP Combo" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Inks & Toners</span>
+          <h4>HP 65XL Combo Pack</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(28)</span></div>
+          <div class="product-price">₦15,000</div>
+        </div>
+      </div>
+      <!-- STATIONERY (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/station 10.jpg" alt="Notebook" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Stationery</span>
+          <h4>Premium Notebook A4</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(120)</span></div>
+          <div class="product-price">₦800</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/station 1.jpg" alt="Pen Set" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Stationery</span>
+          <h4>Executive Pen Set</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(95)</span></div>
+          <div class="product-price">₦2,500</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/desk organizer set.jpg" alt="Desk Organizer" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Stationery</span>
+          <h4>Desk Organizer Set</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(85)</span></div>
+          <div class="product-price">₦3,200</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/station 18.jpg" alt="Sticky Notes" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Stationery</span>
+          <h4>Sticky Notes Set</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(150)</span></div>
+          <div class="product-price">₦400</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/leather portfolio.jpg" alt="Leather Portfolio" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Stationery</span>
+          <h4>Leather Portfolio</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(75)</span></div>
+          <div class="product-price">₦4,500</div>
+        </div>
+      </div>
+      <!-- OFFICE MACHINES (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/shredder.jpg" alt="Shredder" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Machines</span>
+          <h4>Paper Shredder Pro</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(28)</span></div>
+          <div class="product-price">₦45,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/laminating mash.jpg" alt="Laminator" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Machines</span>
+          <h4>Laminating Machine</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(20)</span></div>
+          <div class="product-price">₦28,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/binding mash.jpg" alt="Binding Machine" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Machines</span>
+          <h4>Office Binding Machine</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(18)</span></div>
+          <div class="product-price">₦35,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/imagies/label mash.jpg" alt="Label Maker" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Machines</span>
+          <h4>Label Maker Machine</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(32)</span></div>
+          <div class="product-price">₦22,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/currency mash.jpg" alt="Currency Counter" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Machines</span>
+          <h4>Currency Counter</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(25)</span></div>
+          <div class="product-price">₦58,000</div>
+        </div>
+      </div>
+      <!-- ACCESSORIES (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/wireless keyboard.jpg" alt="Keyboard" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Accessories</span>
+          <h4>Wireless Keyboard & Mouse</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(45)</span></div>
+          <div class="product-price">₦15,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/dual monitor mash.jpg" alt="Monitor Stand" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Accessories</span>
+          <h4>Dual Monitor Stand</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(38)</span></div>
+          <div class="product-price">₦22,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/cooling pad.jpg" alt="Cooling Pad" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Accessories</span>
+          <h4>Laptop Cooling Pad</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(55)</span></div>
+          <div class="product-price">₦8,500</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/webcam.jpg" alt="Webcam" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Accessories</span>
+          <h4>Webcam HD Pro</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(35)</span></div>
+          <div class="product-price">₦25,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/headset noise.jpg" alt="Headset" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Accessories</span>
+          <h4>Headset Noise-Cancelling</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(40)</span></div>
+          <div class="product-price">₦32,000</div>
+        </div>
+      </div>
+      <!-- SMART TECH (5 products) -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/smart whiteboard.jpg" alt="Smart Whiteboard" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Smart Tech</span>
+          <h4>Smart Whiteboard Interactive</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(18)</span></div>
+          <div class="product-price">₦95,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/video confference sys.jpg" alt="Video Conference" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Smart Tech</span>
+          <h4>Video Conference System</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(22)</span></div>
+          <div class="product-price">₦120,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/smart speaker.jpg" alt="Smart Speaker" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Smart Tech</span>
+          <h4>Smart Speaker Assistant</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(35)</span></div>
+          <div class="product-price">₦28,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/smart lighting system.jpg" alt="Smart Lighting" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Smart Tech</span>
+          <h4>Smart Lighting System</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(28)</span></div>
+          <div class="product-price">₦55,000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="imagies/digital signage display.jpg" alt="Digital Signage" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <span class="product-category-tag">Smart Tech</span>
+          <h4>Digital Signage Display</h4>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(15)</span></div>
+          <div class="product-price">₦150,000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILD YOUR OFFICE -->
+  <section class="build-office animate-on-scroll">
+    <p class="section-eyebrow">Design & Equip</p>
+    <h2 class="section-title">Build Your <span class="gold">Perfect Workspace</span></h2>
+    <div class="build-grid">
+      <div class="build-content">
+        <h3>Start Your Office Setup</h3>
+        <p>From concept to completion, we help you create the ideal office environment tailored to your business needs and culture.</p>
+        <div class="build-features">
+          <div class="build-feature"><i class="fas fa-check-circle"></i> Small Office (10-50 staff)</div>
+          <div class="build-feature"><i class="fas fa-check-circle"></i> Medium Office (50-200 staff)</div>
+          <div class="build-feature"><i class="fas fa-check-circle"></i> Large Office (200+ staff)</div>
+          <div class="build-feature"><i class="fas fa-check-circle"></i> Custom Layouts</div>
+        </div>
+        <div class="build-cta">
+          <a href="#" class="btn-gold">Start Setup Plan <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="build-visual">
+        <div class="build-visual-item">
+          <div class="number">10+</div>
+          <span>Years Experience</span>
+        </div>
+        <div class="build-visual-item">
+          <div class="number">500+</div>
+          <span>Projects Completed</span>
+        </div>
+        <div class="build-visual-item">
+          <div class="number">100%</div>
+          <span>Client Satisfaction</span>
+        </div>
+        <div class="build-visual-item">
+          <div class="number">24/7</div>
+          <span>Support Available</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio animate-on-scroll">
+    <p class="section-eyebrow">Our Work</p>
+    <h2 class="section-title">Recent <span class="gold">Projects</span></h2>
+    <div class="portfolio-grid stagger-children">
+      <div class="portfolio-item">
+        <img src="/imagies/conf table 9.jpg" alt="Office Installation" loading="lazy" />
+        <div class="portfolio-overlay">
+          <h4>Corporate HQ Setup</h4>
+          <p>Complete office furniture installation</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="/imagies/conf table 8.jpg" alt="Conference Room" loading="lazy" />
+        <div class="portfolio-overlay">
+          <h4>Executive Conference Room</h4>
+          <p>Smart board & video conferencing</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="/imagies/Table & Chair 4.jpg" alt="Open Office" loading="lazy" />
+        <div class="portfolio-overlay">
+          <h4>Open Plan Office</h4>
+          <p>Modern workspace design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND TRUST -->
+  <div class="brands-section animate-on-scroll">
+    <p class="brands-eyebrow">Trusted by Leading Organizations</p>
+    <div class="brands-row">
+      <div class="brand-logo" style="font-style:italic;font-size:28px;font-weight:900;">hp</div>
+      <div class="brand-logo" style="font-style:italic;font-size:22px;">Dell</div>
+      <div class="brand-logo" style="font-family:'Playfair Display',serif;font-style:italic;font-size:28px;">Canon</div>
+      <div class="brand-logo" style="font-weight:300;letter-spacing:4px;font-size:20px;">EPSON</div>
+      <div class="brand-logo" style="font-style:italic;font-weight:300;font-size:22px;">lenovo</div>
+      <div class="brand-logo" style="font-weight:300;letter-spacing:4px;">SAMSUNG</div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials animate-on-scroll">
+    <p class="section-eyebrow">Testimonials</p>
+    <h2 class="section-title">What Our <span class="gold">Clients Say</span></h2>
+    <div class="testimonial-grid stagger-children">
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <blockquote>"Office Land transformed our entire workspace. The furniture quality is exceptional and the team was incredibly professional."</blockquote>
+        <div class="testimonial-author">
+          <img src="imagies/man ceo.jpg" alt="Client" loading="lazy" />
+          <div><h4>Michael Adebayo</h4><span>CEO, TechVault Ltd</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <blockquote>"The best office solution provider in Nigeria. Their designs are modern, durable, and perfectly aligned with our brand."</blockquote>
+        <div class="testimonial-author">
+          <img src="/imagies/woman ceo.jpg" alt="Client" loading="lazy" />
+          <div><h4>Chioma Okafor</h4><span>Director, Bloom Consulting</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <blockquote>"From consultation to delivery, the experience was seamless. Our new office looks world-class thanks to Office Land."</blockquote>
+        <div class="testimonial-author">
+          <img src="/imagies/man ceo 1.jpg" alt="Client" loading="lazy" />
+          <div><h4>Emeka Nwosu</h4><span>Managing Partner, Sterling Partners</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG PREVIEW -->
+  <section class="blog-section animate-on-scroll">
+    <p class="section-eyebrow">Insights</p>
+    <h2 class="section-title">From Our <span class="gold">Blog</span></h2>
+    <div class="blog-grid stagger-children">
+      <div class="blog-card">
+        <img src="/imagies/Table & Chair 3.jpg" alt="Blog 1" loading="lazy" />
+        <div class="blog-card-content">
+          <div class="tag">Workspace</div>
+          <h4>5 Tips to Design a Productive Workspace</h4>
+          <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="/imagies/Table & Chair 1.jpg" alt="Blog 2" loading="lazy" />
+        <div class="blog-card-content">
+          <div class="tag">Ergonomics</div>
+          <h4>Benefits of Ergonomic Office Chairs</h4>
+          <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="/imagies/Conf Table 1.jpg" alt="Blog 3" loading="lazy" />
+        <div class="blog-card-content">
+          <div class="tag">Sustainability</div>
+          <h4>Creating Sustainable Workspaces</h4>
+          <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRONG CTA BANNER -->
+  <div class="cta-banner animate-on-scroll">
+    <div class="cta-left">
+      <div class="cta-icon"><i class="fas fa-file-lines"></i></div>
+      <div class="cta-text">
+        <h3>Ready to Transform Your Workspace?</h3>
+        <p>Get a customized quote for your office setup today. We deliver premium solutions for businesses of all sizes.</p>
+      </div>
+    </div>
+    <a href="/qoute.html" class="btn-gold" style="white-space:nowrap;font-size:15px;padding:16px 36px;">Request a Corporate Quote <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:14px;">
+          <div class="logo-icon"><i class="fas fa-building"></i></div>
+          <div class="logo-text">
+            <h1>OFFICE LAND LTD</h1>
+            <p>Premium Office Solutions</p>
+          </div>
+        </div>
+        <p>We are committed to providing top-quality office furniture, technology, and smart solutions to businesses across Nigeria.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="solutions.html">Our Solutions</a></li>
+          <li><a href="products.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="my-account.html">My Account</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+          <li><a href="wish-list.html">Wishlist</a></li>
+          <li><a href="returns&refunds.html">Returns &amp; Refunds</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="products.html">Office Chairs</a></li>
+          <li><a href="products.html">Office Desks</a></li>
+          <li><a href="products.html">Storage &amp; Cabinets</a></li>
+          <li><a href="products.html">Sofas &amp; Lounges</a></li>
+          <li><a href="products.html">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item"><i class="fas fa-phone"></i><span>+234 707 472 3171</span></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i><span>info@officelandltd.com</span></div>
+        <div class="contact-item"><i class="fas fa-location-dot"></i><span>12 Wood Street, Off Martins Street, Ej-Osa, Lagos, Nigeria</span></div>
+        <div class="contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 8:00AM – 6:00PM</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Office Land Ltd. All Rights Reserved.</span>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+      <div class="payment-icons">
+        <div class="payment-icon">VISA</div>
+        <div class="payment-icon" style="color:#e74c3c;">MC</div>
+        <div class="payment-icon" style="color:var(--gold);">Verve</div>
+        <div class="payment-icon">GTB</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/2347074723171" target="_blank" aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // ─── HERO SLIDER ──────────────────────────────────────────
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+
+    function goToSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+      slides[currentSlide].querySelectorAll('.fade-in').forEach(el => {
+        el.style.animation = 'none';
+        setTimeout(() => { el.style.animation = ''; }, 10);
+      });
+    }
+
+    function nextSlide() { goToSlide(currentSlide + 1); }
+    function prevSlide() { goToSlide(currentSlide - 1); }
+    setInterval(nextSlide, 5500);
+
+    // ─── MOBILE DROPDOWN TOGGLE ─────────────────────────────
+    function toggleMobileDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.classList.toggle('open');
+    }
+
+    // ─── HAMBURGER MENU ──────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ─── SCROLL ANIMATIONS ──────────────────────────────────
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const staggerElements = document.querySelectorAll('.stagger-children');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    animateElements.forEach(el => observer.observe(el));
+    staggerElements.forEach(el => observer.observe(el));
+
+    // ─── STICKY NAVBAR ──────────────────────────────────────
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // ─── BACK TO TOP ──────────────────────────────────────────
+    const backBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        backBtn.classList.add('visible');
+      } else {
+        backBtn.classList.remove('visible');
+      }
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    console.log('Office Land Ltd – Premium Corporate Platform fully loaded.');
+  </script>
+</body>
+</html>

@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs – Office Land Ltd</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1e1e1e;
+      background: #faf9f6;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ─── COLORS ─────────────────────────────────────────────────── */
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-glow: rgba(201, 168, 76, 0.25);
+      --navy: #1A2A4A;
+      --navy-dark: #111E35;
+      --white: #ffffff;
+      --gray-100: #F8F6F2;
+      --gray-200: #EBE7DE;
+      --gray-400: #a09888;
+      --gray-600: #5e5546;
+      --text: #1e1e1e;
+      --shadow-sm: 0 8px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.10);
+    }
+
+    /* ─── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes goldPulse {
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(201, 168, 76, 0);
+      }
+    }
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes heroGlow {
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+      }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-children>* {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .stagger-children.visible>*:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+    .stagger-children.visible>*:nth-child(2) {
+      transition-delay: 0.10s;
+    }
+    .stagger-children.visible>*:nth-child(3) {
+      transition-delay: 0.15s;
+    }
+    .stagger-children.visible>*:nth-child(4) {
+      transition-delay: 0.20s;
+    }
+    .stagger-children.visible>*:nth-child(5) {
+      transition-delay: 0.25s;
+    }
+    .stagger-children.visible>*:nth-child(6) {
+      transition-delay: 0.30s;
+    }
+    .stagger-children.visible>* {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── TOP BAR ───────────────────────────────────────────────── */
+    .topbar {
+      background: var(--navy);
+      color: #ccc;
+      font-size: 12px;
+      padding: 8px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    }
+    .topbar a {
+      color: #ccc;
+      margin-left: 24px;
+      transition: color 0.2s;
+    }
+    .topbar a:hover {
+      color: var(--gold);
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar-left i {
+      color: var(--gold);
+    }
+
+    /* ─── HEADER / NAV ──────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      padding: 0 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      transition: background 0.3s;
+    }
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo-img {
+      height: 135px;
+      width: auto;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-item>a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+      position: relative;
+    }
+    .nav-item>a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    .nav-item>a:hover::after,
+    .nav-item>a.active::after {
+      width: 60%;
+    }
+    .nav-item>a:hover,
+    .nav-item>a.active {
+      color: var(--gold);
+    }
+    .nav-item>a i {
+      font-size: 10px;
+      opacity: 0.6;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 16px 0;
+      min-width: 220px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown a {
+      display: block;
+      padding: 8px 24px;
+      font-size: 13px;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .dropdown a:hover {
+      background: rgba(201, 168, 76, 0.06);
+      color: var(--gold);
+      padding-left: 28px;
+    }
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-icons a {
+      font-size: 18px;
+      color: var(--navy);
+      position: relative;
+      transition: all 0.2s;
+    }
+    .nav-icons a:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .search-wrapper {
+      position: relative;
+    }
+    .search-wrapper input {
+      border: 1px solid var(--gray-200);
+      border-radius: 30px;
+      padding: 8px 16px 8px 40px;
+      font-size: 13px;
+      background: var(--gray-100);
+      transition: all 0.3s;
+      width: 180px;
+      outline: none;
+    }
+    .search-wrapper input:focus {
+      border-color: var(--gold);
+      width: 220px;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.1);
+    }
+    .search-wrapper i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+    }
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(201, 168, 76, 0.4);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--navy);
+      transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 20px 30px;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      z-index: 999;
+      animation: slideUp 0.3s ease;
+      max-height: calc(100vh - 76px);
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      display: block;
+    }
+    .mobile-menu .mobile-nav-item {
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .mobile-menu .mobile-nav-item>a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .mobile-menu .mobile-nav-item>a:hover {
+      color: var(--gold);
+    }
+    .mobile-dropdown {
+      display: none;
+      padding-left: 16px;
+      background: var(--gray-100);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .mobile-dropdown.open {
+      display: block;
+    }
+    .mobile-dropdown a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 14px;
+      color: var(--text);
+      border-bottom: 1px solid var(--gray-200);
+      transition: all 0.2s;
+    }
+    .mobile-dropdown a:hover {
+      color: var(--gold);
+      padding-left: 20px;
+    }
+    .mobile-dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .page-hero {
+      background: var(--navy-dark);
+      padding: 100px 60px;
+      position: relative;
+      overflow: hidden;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.12), transparent 70%);
+      border-radius: 50%;
+      animation: heroGlow 6s ease-in-out infinite;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.05), transparent 70%);
+      border-radius: 50%;
+      animation: heroGlow 8s ease-in-out infinite reverse;
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      animation: fadeInUp 1s ease forwards;
+    }
+    .page-hero .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+    .page-hero .hero-badge i {
+      font-size: 12px;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .page-hero h1 span {
+      color: var(--gold);
+      font-style: italic;
+      position: relative;
+    }
+    .page-hero h1 span::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gold);
+      opacity: 0.3;
+      border-radius: 2px;
+    }
+    .page-hero p {
+      color: #ccc;
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+    .page-hero .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 8px;
+    }
+    .page-hero .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .page-hero .hero-stat .number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+    }
+    .page-hero .hero-stat .label {
+      font-size: 13px;
+      color: #999;
+      margin-top: 2px;
+    }
+    .hero-image-wrapper {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .hero-image-wrapper i {
+      font-size: 300px;
+      color: var(--gold);
+    }
+
+    /* ─── SECTION COMMON ───────────────────────────────────────── */
+    section {
+      padding: 80px 60px;
+    }
+    .section-eyebrow {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 44px;
+      line-height: 1.2;
+    }
+    .section-title .gold {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ─── SEARCH ─────────────────────────────────────────────────── */
+    .faq-search-wrapper {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .faq-search-wrapper i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      font-size: 18px;
+    }
+    .faq-search-wrapper input {
+      width: 100%;
+      padding: 16px 20px 16px 52px;
+      border: 2px solid var(--gray-200);
+      border-radius: 12px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+      background: #fff;
+    }
+    .faq-search-wrapper input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.1);
+      outline: none;
+    }
+    .faq-search-wrapper input::placeholder {
+      color: var(--gray-400);
+    }
+    .faq-search-wrapper .clear-search {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--gray-400);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px;
+      display: none;
+    }
+    .faq-search-wrapper .clear-search.show {
+      display: block;
+    }
+    .faq-search-wrapper .clear-search:hover {
+      color: var(--gold);
+    }
+
+    /* ─── CATEGORY TABS ────────────────────────────────────────── */
+    .faq-categories {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .faq-categories .cat-btn {
+      padding: 10px 28px;
+      border: 2px solid var(--gray-200);
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-600);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    .faq-categories .cat-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .faq-categories .cat-btn.active {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+    }
+    .faq-categories .cat-btn.active:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+    }
+
+    /* ─── FAQ ACCORDION ────────────────────────────────────────── */
+    .faq-accordion {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+    .faq-item:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-item .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+    .faq-item .faq-question:hover {
+      color: var(--gold);
+    }
+    .faq-item .faq-question .icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--gray-400);
+      transition: all 0.3s;
+      margin-left: 16px;
+    }
+    .faq-item.active .faq-question .icon {
+      background: var(--gold);
+      color: #fff;
+    }
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding: 0 24px;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 0 24px 20px;
+    }
+    .faq-item .faq-answer p {
+      color: var(--gray-600);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+    .faq-item .faq-answer ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+    .faq-item .faq-answer ul li {
+      color: var(--gray-600);
+      line-height: 1.8;
+      font-size: 14px;
+      list-style: disc;
+    }
+
+    /* ─── NO RESULTS ───────────────────────────────────────────── */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .no-results.show {
+      display: block;
+    }
+    .no-results i {
+      font-size: 48px;
+      color: var(--gray-200);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .no-results h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .no-results p {
+      color: var(--gray-600);
+    }
+
+    /* ─── CONTACT SUPPORT ───────────────────────────────────────── */
+    .contact-support {
+      background: var(--gray-100);
+      border-radius: 16px;
+      padding: 40px 48px;
+      text-align: center;
+      margin-top: 40px;
+      border: 1px solid var(--gray-200);
+    }
+    .contact-support h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 8px;
+    }
+    .contact-support p {
+      color: var(--gray-600);
+      margin-bottom: 20px;
+    }
+    .contact-support .support-options {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-support .support-options a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .contact-support .support-options .btn-email {
+      background: var(--navy);
+      color: #fff;
+    }
+    .contact-support .support-options .btn-email:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+    }
+    .contact-support .support-options .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    .contact-support .support-options .btn-whatsapp:hover {
+      background: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+    }
+    .contact-support .support-options .btn-phone {
+      background: var(--gray-200);
+      color: var(--text);
+    }
+    .contact-support .support-options .btn-phone:hover {
+      background: var(--gold);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ─── CTA BANNER ───────────────────────────────────────────── */
+    .cta-banner {
+      background: var(--navy-dark);
+      padding: 60px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-top: 1px solid rgba(201, 168, 76, 0.15);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.05), transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 24px;
+      flex-shrink: 0;
+      animation: goldPulse 2.5s infinite;
+    }
+    .cta-text h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+    }
+    .cta-text p {
+      font-size: 15px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-gold:hover {
+      background: #b8952e;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.4);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      padding: 60px 60px 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+      gap: 36px;
+    }
+    .footer-brand .logo-text h1 {
+      color: #fff;
+    }
+    .footer-brand .logo-text p {
+      color: #aaa;
+    }
+    .footer-brand p {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 16px 0 20px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 14px;
+      transition: all 0.25s;
+    }
+    .footer-social a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+    .footer-col li a {
+      font-size: 13px;
+      color: #aaa;
+      transition: color 0.2s;
+    }
+    .footer-col li a:hover {
+      color: var(--gold);
+      padding-left: 4px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .contact-item i {
+      color: var(--gold);
+      font-size: 14px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .contact-item span {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 44px;
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-bottom span {
+      font-size: 12px;
+      color: #777;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: #777;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+    .payment-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .payment-icon {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: #ccc;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+    }
+    .payment-icon:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* ─── WHATSAPP FLOAT ────────────────────────────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      animation: float 3s ease-in-out infinite;
+    }
+    .whatsapp-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 32px;
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s;
+    }
+    .whatsapp-float a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 40px rgba(37, 211, 102, 0.5);
+    }
+
+    /* ─── BACK TO TOP ───────────────────────────────────────────── */
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 28px;
+      z-index: 998;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+      transition: all 0.3s;
+    }
+    .back-to-top.visible {
+      display: flex;
+    }
+    .back-to-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(201, 168, 76, 0.5);
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 1200px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-image-wrapper i {
+        font-size: 200px;
+      }
+    }
+    @media (max-width: 992px) {
+      section {
+        padding: 60px 30px;
+      }
+      .topbar {
+        padding: 6px 30px;
+        font-size: 11px;
+        flex-wrap: wrap;
+      }
+      header {
+        padding: 0 30px;
+        height: 64px;
+      }
+      .nav-desktop .nav-item>a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      .search-wrapper input {
+        width: 120px;
+      }
+      .search-wrapper input:focus {
+        width: 150px;
+      }
+      .page-hero {
+        padding: 60px 30px;
+        min-height: 320px;
+      }
+      .page-hero h1 {
+        font-size: 40px;
+      }
+      .page-hero p {
+        font-size: 16px;
+      }
+      .page-hero .hero-stats {
+        gap: 24px;
+      }
+      .hero-image-wrapper {
+        display: none;
+      }
+      .contact-support {
+        padding: 30px 24px;
+      }
+      .contact-support .support-options {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-support .support-options a {
+        width: 100%;
+        justify-content: center;
+      }
+      .cta-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 30px;
+      }
+      .cta-left {
+        flex-direction: column;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+    }
+    @media (max-width: 768px) {
+      .topbar {
+        display: none;
+      }
+      header {
+        padding: 0 16px;
+        height: 58px;
+      }
+      .nav-desktop {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .search-wrapper input {
+        width: 100px;
+      }
+      .search-wrapper input:focus {
+        width: 120px;
+      }
+      .logo-img {
+        height: 40px;
+      }
+      .faq-categories .cat-btn {
+        padding: 8px 18px;
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 640px) {
+      header {
+        padding: 0 16px;
+        height: 58px;
+      }
+      .search-wrapper input {
+        width: 80px;
+        padding: 6px 10px 6px 30px;
+        font-size: 12px;
+      }
+      .search-wrapper input:focus {
+        width: 100px;
+      }
+      .search-wrapper i {
+        left: 10px;
+        font-size: 12px;
+      }
+      .logo-img {
+        height: 35px;
+      }
+      .page-hero {
+        padding: 40px 16px;
+        min-height: 280px;
+      }
+      .page-hero h1 {
+        font-size: 28px;
+      }
+      .page-hero p {
+        font-size: 14px;
+      }
+      .page-hero .hero-stats {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .page-hero .hero-stat .number {
+        font-size: 22px;
+      }
+      .page-hero .hero-stat .label {
+        font-size: 11px;
+      }
+      .page-hero .hero-badge {
+        font-size: 10px;
+        padding: 6px 14px;
+      }
+      section {
+        padding: 40px 16px;
+      }
+      .section-title {
+        font-size: 26px;
+      }
+      .faq-search-wrapper {
+        margin-bottom: 24px;
+      }
+      .faq-search-wrapper input {
+        padding: 14px 16px 14px 44px;
+        font-size: 14px;
+      }
+      .faq-search-wrapper i {
+        left: 14px;
+        font-size: 15px;
+      }
+      .faq-categories {
+        gap: 8px;
+      }
+      .faq-categories .cat-btn {
+        padding: 6px 14px;
+        font-size: 11px;
+      }
+      .faq-item .faq-question {
+        padding: 16px 18px;
+        font-size: 14px;
+      }
+      .faq-item.active .faq-answer {
+        padding: 0 18px 16px;
+      }
+      .contact-support {
+        padding: 24px 16px;
+      }
+      .contact-support h3 {
+        font-size: 20px;
+      }
+      .cta-banner {
+        padding: 24px 16px;
+      }
+      .cta-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+      .cta-text h3 {
+        font-size: 17px;
+      }
+      footer {
+        padding: 40px 16px 20px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+      }
+      .whatsapp-float a {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+      }
+      .back-to-top {
+        bottom: 80px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <i class="fas fa-circle-check"></i>
+      We deliver premium office solutions across Nigeria. Quality. Durability. Excellence.
+    </div>
+    <div class="topbar-right">
+      <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
+      <a href="contact.html"><i class="fas fa-headset"></i> Support</a>
+      <a href="#">English <i class="fas fa-chevron-down" style="font-size:9px;"></i></a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <a href="index.html" class="logo-link">
+        <img src="Logo.png" alt="Office Land Ltd Logo" class="logo-img" />
+      </a>
+    </div>
+    <nav class="nav-desktop">
+      <div class="nav-item"><a href="index.html">Home</a></div>
+      <div class="nav-item">
+        <a href="#">Products <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown">
+          <a href="products.html">Computers</a>
+          <a href="products.html">Office Furniture</a>
+          <a href="products.html">Printers & Scanners</a>
+          <a href="products.html">Inks & Toners</a>
+          <a href="products.html">Stationery</a>
+          <a href="products.html">Office Machines</a>
+          <a href="products.html">Accessories</a>
+          <a href="products.html">Smart Tech</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#">Solutions <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown">
+          <a href="solutions.html">Office Setup Solutions</a>
+          <a href="solutions.html">Smart Office Technology</a>
+          <a href="solutions.html">Corporate Procurement</a>
+          <a href="solutions.html">Workspace Planning</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="about.html">About</a></div>
+      <div class="nav-item"><a href="portfolio.html">Portfolio</a></div>
+      <div class="nav-item"><a href="blog.html">Blog</a></div>
+      <div class="nav-item"><a href="contact.html">Contact</a></div>
+      <div class="nav-item"><a href="quote.html" style="color:var(--gold);font-weight:700;">Request Quote</a></div>
+    </nav>
+    <div class="nav-icons">
+      <div class="search-wrapper">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search products..." />
+      </div>
+      <a href="#" aria-label="Account"><i class="fas fa-user"></i></a>
+      <a href="#" aria-label="Wishlist"><i class="fas fa-heart"></i></a>
+      <a href="#" style="position:relative;" aria-label="Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">0</span>
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-item"><a href="index.html">Home</a></div>
+    <div class="mobile-nav-item">
+      <a href="#" onclick="toggleMobileDropdown('productsDropdown')">Products <i class="fas fa-chevron-down"></i></a>
+      <div class="mobile-dropdown" id="productsDropdown">
+        <a href="products.html">Computers</a>
+        <a href="products.html">Office Furniture</a>
+        <a href="products.html">Printers & Scanners</a>
+        <a href="products.html">Inks & Toners</a>
+        <a href="products.html">Stationery</a>
+        <a href="products.html">Office Machines</a>
+        <a href="products.html">Accessories</a>
+        <a href="products.html">Smart Tech</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <a href="#" onclick="toggleMobileDropdown('solutionsDropdown')">Solutions <i class="fas fa-chevron-down"></i></a>
+      <div class="mobile-dropdown" id="solutionsDropdown">
+        <a href="solutions.html">Office Setup Solutions</a>
+        <a href="solutions.html">Smart Office Technology</a>
+        <a href="solutions.html">Corporate Procurement</a>
+        <a href="solutions.html">Workspace Planning</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item"><a href="about.html">About</a></div>
+    <div class="mobile-nav-item"><a href="portfolio.html">Portfolio</a></div>
+    <div class="mobile-nav-item"><a href="blog.html">Blog</a></div>
+    <div class="mobile-nav-item"><a href="contact.html">Contact</a></div>
+    <div class="mobile-nav-item"><a href="quote.html" style="color:var(--gold);font-weight:700;">Request Quote</a></div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero animate-on-scroll">
+    <div class="page-hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-question-circle"></i>
+        Frequently Asked Questions
+      </div>
+      <h1>Got Questions? <span>We've Got</span> Answers</h1>
+      <p>Find answers to the most common questions about our products, services, shipping, returns, and more.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="number">50+</span>
+          <span class="label">Expert Answers</span>
+        </div>
+        <div class="hero-stat">
+          <span class="number">8</span>
+          <span class="label">Categories</span>
+        </div>
+        <div class="hero-stat">
+          <span class="number">24/7</span>
+          <span class="label">Support Available</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrapper">
+      <i class="fas fa-question-circle"></i>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="animate-on-scroll" style="padding:80px 60px;">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently Asked <span class="gold">Questions</span></h2>
+
+    <!-- Search Bar -->
+    <div class="faq-search-wrapper">
+      <i class="fas fa-search"></i>
+      <input type="text" id="faqSearch" placeholder="Search for answers..." onkeyup="searchFAQs()" />
+      <button class="clear-search" id="clearSearch" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="faq-categories" id="faqCategories">
+      <button class="cat-btn active" data-category="all" onclick="filterFAQs('all')">All Questions</button>
+      <button class="cat-btn" data-category="orders" onclick="filterFAQs('orders')">Orders</button>
+      <button class="cat-btn" data-category="shipping" onclick="filterFAQs('shipping')">Shipping</button>
+      <button class="cat-btn" data-category="returns" onclick="filterFAQs('returns')">Returns</button>
+      <button class="cat-btn" data-category="products" onclick="filterFAQs('products')">Products</button>
+      <button class="cat-btn" data-category="payments" onclick="filterFAQs('payments')">Payments</button>
+      <button class="cat-btn" data-category="account" onclick="filterFAQs('account')">Account</button>
+      <button class="cat-btn" data-category="corporate" onclick="filterFAQs('corporate')">Corporate</button>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="faq-accordion" id="faqAccordion">
+      <!-- Orders -->
+      <div class="faq-item" data-category="orders">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How do I place an order?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>You can place an order through our website by browsing our product catalog, selecting the items you need, and proceeding to checkout. You'll need to provide your shipping address and payment information to complete the purchase. For bulk orders, you can contact our corporate sales team directly.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="orders">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can I modify or cancel my order after placing it?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>You can modify or cancel your order within 1 hour of placing it by contacting our customer support team. Once the order has been processed for shipping, modifications may not be possible. Please contact us immediately if you need to make changes.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="orders">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How do I track my order?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Once your order is shipped, you will receive a tracking number via email and SMS. You can track your order on our website using the <a href="track-order.html" style="color:var(--gold);font-weight:600;">Track Your Order</a> page or directly through the courier's website.</p>
+        </div>
+      </div>
+
+      <!-- Shipping -->
+      <div class="faq-item" data-category="shipping">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What are your shipping options?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>We offer standard and express shipping options across Nigeria. Standard shipping typically takes 3-5 business days, while express delivery takes 1-2 business days. Free shipping is available on orders above ₦100,000.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="shipping">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Do you ship outside Nigeria?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Currently, we primarily serve customers within Nigeria. For international inquiries, please contact our support team to discuss your specific needs and shipping options.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="shipping">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How much does shipping cost?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Shipping costs depend on your location and the size/weight of your order. Standard shipping rates start at ₦2,500 for small items. Orders over ₦100,000 qualify for free shipping within Lagos, Abuja, and Port Harcourt.</p>
+        </div>
+      </div>
+
+      <!-- Returns -->
+      <div class="faq-item" data-category="returns">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What is your return policy?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>We offer a 30-day return policy on all items. If you're not satisfied with your purchase, you can return it within 30 days of delivery for a full refund. Items must be in their original condition with all packaging and accessories.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="returns">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How do I initiate a return?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>To initiate a return, please contact our customer support team with your order number and reason for return. We'll provide you with a return authorization and shipping instructions. Visit our <a href="returns-refund.html" style="color:var(--gold);font-weight:600;">Returns & Refunds</a> page for more details.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="returns">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How long does it take to process a refund?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Refunds are processed within 5-7 business days after we receive and inspect your return. The refund will be issued to your original payment method. Bank transfers may take an additional 2-3 business days to reflect in your account.</p>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div class="faq-item" data-category="products">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Are your products covered by a warranty?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, all our products come with a comprehensive warranty. Furniture items typically have a 5-year warranty, while electronics and technology products come with a 1-2 year manufacturer's warranty. Specific warranty details are provided on each product page.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="products">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Do you offer custom furniture options?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, we offer custom furniture solutions for corporate clients. Our design team can work with you to create bespoke pieces that match your brand identity and workspace requirements. Contact our corporate sales team to discuss your needs.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="products">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Are your products assembled before delivery?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Most of our furniture products are delivered with assembly instructions. We also offer professional installation services for an additional fee. Our team can assemble and set up your furniture for a seamless experience.</p>
+        </div>
+      </div>
+
+      <!-- Payments -->
+      <div class="faq-item" data-category="payments">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What payment methods do you accept?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>We accept various payment methods including:</p>
+          <ul>
+            <li>Credit and Debit Cards (Visa, Mastercard, Verve)</li>
+            <li>Bank Transfers</li>
+            <li>USSD Payments</li>
+            <li>Corporate Purchase Orders (for businesses)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item" data-category="payments">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Is my payment information secure?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, we use industry-standard encryption and security protocols to protect your payment information. Our payment gateway is PCI DSS compliant, ensuring your data is safe and secure.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="payments">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can I pay for my order in installments?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, we offer installment payment options for qualifying customers through our partner financial institutions. Contact our support team for more information about installment plans and eligibility criteria.</p>
+        </div>
+      </div>
+
+      <!-- Account -->
+      <div class="faq-item" data-category="account">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How do I create an account?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>You can create an account by clicking on the "Account" icon in the top right corner of our website and selecting "Create Account." You'll need to provide your email address, name, and create a password. Existing customers can also create accounts to track orders and manage preferences.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="account">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          I forgot my password. How do I reset it?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Click on the "Account" icon and select "Forgot Password." Enter your registered email address, and we'll send you a password reset link. Follow the instructions in the email to create a new password.</p>
+        </div>
+      </div>
+
+      <!-- Corporate -->
+      <div class="faq-item" data-category="corporate">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Do you offer discounts for bulk orders?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, we offer competitive pricing for bulk orders. Corporate clients can benefit from volume discounts, custom pricing, and dedicated account management. Contact our corporate sales team for a customized quote.</p>
+        </div>
+      </div>
+      <div class="faq-item" data-category="corporate">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can I get a sample before placing a large order?
+          <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, we provide samples for corporate clients before placing bulk orders. Sample availability depends on the product type. Contact our corporate sales team to arrange sample delivery.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" id="noResults">
+      <i class="fas fa-search"></i>
+      <h3>No results found</h3>
+      <p>We couldn't find any questions matching your search. Try using different keywords or browse our categories.</p>
+    </div>
+
+    <!-- Contact Support -->
+    <div class="contact-support">
+      <h3>Still Have Questions?</h3>
+      <p>Our support team is here to help you with any questions you may have.</p>
+      <div class="support-options">
+        <a href="mailto:info@officelandltd.com" class="btn-email"><i class="fas fa-envelope"></i> Email Us</a>
+        <a href="https://wa.me/2347074723171" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="tel:+2347074723171" class="btn-phone"><i class="fas fa-phone"></i> Call Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRONG CTA BANNER -->
+  <div class="cta-banner animate-on-scroll">
+    <div class="cta-left">
+      <div class="cta-icon"><i class="fas fa-file-lines"></i></div>
+      <div class="cta-text">
+        <h3>Ready to Transform Your Workspace?</h3>
+        <p>Get a customized quote for your office setup today. We deliver premium solutions for businesses of all sizes.</p>
+      </div>
+    </div>
+    <a href="quote.html" class="btn-gold" style="white-space:nowrap;font-size:15px;padding:16px 36px;width:auto;">Request a Corporate Quote <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:14px;">
+          <div class="logo-icon"><i class="fas fa-building"></i></div>
+          <div class="logo-text">
+            <h1>OFFICE LAND LTD</h1>
+            <p>Premium Office Solutions</p>
+          </div>
+        </div>
+        <p>We are committed to providing top-quality office furniture, technology, and smart solutions to businesses across Nigeria.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="solutions.html">Our Solutions</a></li>
+          <li><a href="products.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="my-account.html">My Account</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+          <li><a href="wish-list.html">Wishlist</a></li>
+          <li><a href="returns&refunds.html">Returns &amp; Refunds</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="products.html">Office Chairs</a></li>
+          <li><a href="products.html">Office Desks</a></li>
+          <li><a href="products.html">Storage &amp; Cabinets</a></li>
+          <li><a href="products.html">Sofas &amp; Lounges</a></li>
+          <li><a href="products.html">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item"><i class="fas fa-phone"></i><span>+234 707 472 3171</span></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i><span>info@officelandltd.com</span></div>
+        <div class="contact-item"><i class="fas fa-location-dot"></i><span>12 Wood Street, Off Martins Street, Ej-Osa, Lagos, Nigeria</span></div>
+        <div class="contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 8:00AM – 6:00PM</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Office Land Ltd. All Rights Reserved.</span>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+      <div class="payment-icons">
+        <div class="payment-icon">VISA</div>
+        <div class="payment-icon" style="color:#e74c3c;">MC</div>
+        <div class="payment-icon" style="color:var(--gold);">Verve</div>
+        <div class="payment-icon">GTB</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/2347074723171" target="_blank" aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // ─── MOBILE DROPDOWN ─────────────────────────────────────
+    function toggleMobileDropdown(id) {
+      const dropdown = document.getElementById(id);
+      if (dropdown) dropdown.classList.toggle('open');
+    }
+
+    // ─── HAMBURGER MENU ──────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ─── SCROLL ANIMATIONS ──────────────────────────────────
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const staggerElements = document.querySelectorAll('.stagger-children');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    animateElements.forEach(el => observer.observe(el));
+    staggerElements.forEach(el => observer.observe(el));
+
+    // ─── STICKY NAVBAR ──────────────────────────────────────
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // ─── BACK TO TOP ──────────────────────────────────────────
+    const backBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        backBtn.classList.add('visible');
+      } else {
+        backBtn.classList.remove('visible');
+      }
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ─── SEARCH BAR ──────────────────────────────────────────
+    const searchInput = document.querySelector('.search-wrapper input');
+    if (searchInput) {
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const query = searchInput.value.trim();
+          if (query) {
+            alert(`🔍 Searching for: "${query}"\n(Redirect to search results page)`);
+          }
+        }
+      });
+    }
+
+    // ─── FAQ TOGGLE ──────────────────────────────────────────
+    function toggleFAQ(button) {
+      const item = button.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      document.querySelectorAll('.faq-item.active').forEach(el => {
+        if (el !== item) {
+          el.classList.remove('active');
+          const icon = el.querySelector('.icon i');
+          if (icon) {
+            icon.className = 'fas fa-chevron-down';
+          }
+        }
+      });
+      
+      // Toggle current item
+      if (isActive) {
+        item.classList.remove('active');
+        const icon = button.querySelector('.icon i');
+        if (icon) {
+          icon.className = 'fas fa-chevron-down';
+        }
+      } else {
+        item.classList.add('active');
+        const icon = button.querySelector('.icon i');
+        if (icon) {
+          icon.className = 'fas fa-chevron-up';
+        }
+      }
+    }
+
+    // ─── FILTER FAQS BY CATEGORY ────────────────────────────
+    function filterFAQs(category) {
+      const items = document.querySelectorAll('.faq-item');
+      const catBtns = document.querySelectorAll('.cat-btn');
+      
+      // Update active button
+      catBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-category') === category) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Show/hide items
+      let visibleCount = 0;
+      items.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        if (category === 'all' || itemCategory === category) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no results
+      const noResults = document.getElementById('noResults');
+      if (visibleCount === 0) {
+        noResults.classList.add('show');
+      } else {
+        noResults.classList.remove('show');
+      }
+      
+      // Reset search
+      document.getElementById('faqSearch').value = '';
+      document.getElementById('clearSearch').classList.remove('show');
+    }
+
+    // ─── SEARCH FAQS ──────────────────────────────────────────
+    function searchFAQs() {
+      const searchTerm = document.getElementById('faqSearch').value.toLowerCase().trim();
+      const items = document.querySelectorAll('.faq-item');
+      const clearBtn = document.getElementById('clearSearch');
+      
+      if (searchTerm.length > 0) {
+        clearBtn.classList.add('show');
+      } else {
+        clearBtn.classList.remove('show');
+      }
+      
+      // Reset category filters
+      const catBtns = document.querySelectorAll('.cat-btn');
+      catBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-category') === 'all') {
+          btn.classList.add('active');
+        }
+      });
+      
+      let visibleCount = 0;
+      items.forEach(item => {
+        const question = item.querySelector('.faq-question').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+        const category = item.getAttribute('data-category');
+        
+        if (question.includes(searchTerm) || answer.includes(searchTerm) || category.includes(searchTerm)) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no results
+      const noResults = document.getElementById('noResults');
+      if (visibleCount === 0 && searchTerm.length > 0) {
+        noResults.classList.add('show');
+      } else {
+        noResults.classList.remove('show');
+      }
+    }
+
+    // ─── CLEAR SEARCH ─────────────────────────────────────────
+    function clearSearch() {
+      document.getElementById('faqSearch').value = '';
+      document.getElementById('clearSearch').classList.remove('show');
+      filterFAQs('all');
+    }
+
+    // ─── FAQ SEARCH KEYBOARD SUPPORT ─────────────────────────
+    document.getElementById('faqSearch').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        // Search is already triggered on keyup
+      }
+    });
+
+    // ─── INIT ──────────────────────────────────────────────────
+    console.log('Office Land Ltd – FAQs Page loaded with 20+ answers.');
+  </script>
+</body>
+</html>
